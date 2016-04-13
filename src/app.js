@@ -3,10 +3,10 @@
 */
 var Space = new cp.Space();
 Space.gravity =cp.v(0,-100);
-//Space.iterations = 30;
+
 Space.sleepTimeThreshold = 0.5;
 Space.colisionSlop = 0.5;
-//var updateStepValue = 60;
+
 
 var HelloWorldLayer = cc.Layer.extend({
     sprite:null,
@@ -39,35 +39,11 @@ var HelloWorldLayer = cc.Layer.extend({
     move: function(location,event){
         var game  = event.getCurrentTarget();
         var loc = location.getLocation();
-        //cc.log(loc.x+"pos en x");
+       
         var fly = cc.JumpTo.create(3,cc.p(700,300),300,1);
         game.BirdNode.runAction(fly);
         var bird = game.BirdNode.getBoundingBox();
-//        game.removeChild(game.BirdNode,true);
-//
-//        
-//        game.BirdNode = cc.PhysicsSprite.create(res.red);
-//        var BirdBody = null;
-//        var BirdShape = null;
-//        var scaleX = 0.03;
-//        var scaleY = 0.03;
-//        nBird.width *= scaleX;
-//        nBird.height *= scaleY;
-//        
-//        BirdBody = Space.addBody(new cp.Body(mass, cp.momentForBox(mass, nBird.width, nBird.height)));
-//        BirdBody.setPos(cc.p(lastpos.x,lastpos.y));
-//
-//        BirdShape = Space.addShape(new cp.CircleShape(BirdBody, nBird.width * 0.5, cc.p(0, 0)));
-//        BirdShape.setFriction(0.5);
-//        BirdShape.setElasticity(1);
-//        BirdShape.setCollisionType(2);
-//
-//        //#5
-//        game.BirdNode.setBody(BirdBody);
-//        game.BirdNode.setRotation(0);
-//        game.BirdNode.setScale(0.03);
-//
-//        game.addChild(game.BirdNode);
+
         
         
     },
@@ -170,20 +146,18 @@ var HelloWorldLayer = cc.Layer.extend({
         BirdSize.width *= scaleX;
         BirdSize.height *= scaleY;
 
-        //#3
         
-        //cp.momentforBox(mass,100,100);
         
         BirdBody = Space.addBody(new cp.Body(mass, cp.momentForBox(mass, BirdSize.width, BirdSize.height)));
         BirdBody.setPos(cc.p(150,200));
 
-        //#4
+       
         BirdShape = Space.addShape(new cp.CircleShape(BirdBody, BirdSize.width * 0.5, cc.p(0, 0)));
         BirdShape.setFriction(0.5);
         BirdShape.setElasticity(1);
         BirdShape.setCollisionType(2);
 
-        //#5
+       
         this.BirdNode.setBody(BirdBody);
         this.BirdNode.setRotation(100);
         this.BirdNode.setScale(0.03);
@@ -194,9 +168,7 @@ var HelloWorldLayer = cc.Layer.extend({
             Space.step(1/60);
         }
         
-        //var WALLS_WIDTH = 5;
-        //var WALLS_ELASTICITY = 0.5;
-        //var WALLS_FRICTION = 1;
+       
         
         this.leftWall = new cp.SegmentShape(Space.staticBody, new cp.v(0, 0), new cp.v(0, cc.winSize.height), 5);
         this.leftWall.setElasticity(0.5);
@@ -219,17 +191,7 @@ var HelloWorldLayer = cc.Layer.extend({
         this.upperWall.setFriction(1);
         Space.addStaticShape(this.upperWall);
         
-//        
-//        var body, staticBody = Space.staticBody;
-//        var shape;
-//        var radius = 15;
-//        
-//        body = Space.addBody(new cp.Body(10, cp.momentForCircle(10, 0, radius, cp.v(0,0))));
-//        body.setPos(cp.v(320, radius+5));
-//
-//        shape = Space.addShape(new cp.CircleShape(body, radius, cp.v(0,0)));
-//        shape.setElasticity(0);
-//        shape.setFriction(0.9);
+
         Space.addCollisionHandler(1,2,null,null,null,null);
         
          this.schedule(update);
@@ -238,8 +200,7 @@ var HelloWorldLayer = cc.Layer.extend({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             onTouchBegan: this.move
         },this);
-//        this.schedule(this.crash,0);
-//        this.schedule(this.crash2,0);
+
         
         return true;
     }
